@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  code: MyString
+  departing_flights: one
+  arriving_flights: one
+
+two:
+  name: MyString
+  code: MyString
+  departing_flights: two
+  arriving_flights: two
