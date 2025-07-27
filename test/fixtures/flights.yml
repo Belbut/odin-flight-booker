@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  takeoff_time: 2025-07-27 12:44:49
+  duration: 1
+  departure_airport: one
+  arrival_airport: one
+
+two:
+  takeoff_time: 2025-07-27 12:44:49
+  duration: 1
+  departure_airport: two
+  arrival_airport: two
