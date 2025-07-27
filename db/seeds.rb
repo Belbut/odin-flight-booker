@@ -58,6 +58,7 @@ TEST_FLIGHTS = [
   { ETD: 20.days.from_now, ETE: 95, departure_airport: 'LCTN', arrival_airport: 'LPOA' }
 ]
 
+puts
 TEST_FLIGHTS.each do |flight|
   Flight.find_or_create_by!(
     takeoff_time: flight[:ETD],
