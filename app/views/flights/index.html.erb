@@ -2,17 +2,18 @@
 <p>Find me in app/views/flights/index.html.erb</p>
 
 
-<%=form_with do |form|%>
+<%=form_with method: :get do |form|%>
     <%=form.label :departure_airport, "From:"%>
-    <%=select_tag(:departure_airport, options_for_select(@airports_options))%>
+    <%=select_tag(:departure_airport, options_for_select(@airports_options), prompt: "Select Departure")%>
 
     <%=form.label :arrival_airport, "To:"%>
-    <%=select_tag(:arrival_airport, options_for_select(@airports_options))%>
-
+    <%=select_tag(:arrival_airport, options_for_select(@airports_options), prompt: "Select Arrival")%>
+    
     <%=form.label :flight_date, "Date:"%>
-    <%=form.date_field :flight_date%>
+    <%=select_tag :flight_date, options_for_select(@flights_options), prompt: "Select Date"%>
 
     <%=form.label :number_passengers, "Number of passengers:"%>
-    <%=form.number_field :number_passengers, in:(1..50), step: 1%>
+    <%=form.number_field :number_passengers, in:(1..4), step: 1, value: 1%>
+
     <%= form.submit "Search"%>
 <%end%>
