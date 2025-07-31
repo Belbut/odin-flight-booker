@@ -1,19 +1,34 @@
 <h1>Flights#index</h1>
 <p>Find me in app/views/flights/index.html.erb</p>
 
+<%=link_to "home", flights_path %>
 
-<%=form_with method: :get do |form|%>
+
+<%=form_with model:@flight, method: :get do |form|%>
     <%=form.label :departure_airport, "From:"%>
-    <%=select_tag(:departure_airport, options_for_select(@airports_options), prompt: "Select Departure")%>
+    <%=form.select(:departure_airport, options_for_select(@airports_options), prompt: true)%>
 
     <%=form.label :arrival_airport, "To:"%>
-    <%=select_tag(:arrival_airport, options_for_select(@airports_options), prompt: "Select Arrival")%>
+    <%=form.select(:arrival_airport, options_for_select(@airports_options), prompt: true)%>
     
     <%=form.label :flight_date, "Date:"%>
-    <%=select_tag :flight_date, options_for_select(@flights_options), prompt: "Select Date"%>
+    <%=form.select :flight_date, options_for_select(@flights_options), prompt: true%>
 
     <%=form.label :number_passengers, "Number of passengers:"%>
     <%=form.number_field :number_passengers, in:(1..4), step: 1, value: 1%>
 
     <%= form.submit "Search"%>
 <%end%>
+
+
+<%if @queried_flights%>
+    <div>
+    <%@queried_flights.each do |flight|%>   
+        <div>
+            <%=debug flight%>
+        </div>
+    <%end%>
+    </div>
+<%end%>
+
+<%= debug(params)%>
