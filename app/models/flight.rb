@@ -6,6 +6,15 @@ class Flight < ApplicationRecord
     takeoff_time.strftime('%d/%m/%Y')
   end
 
+  def formatted_takeoff_time
+    takeoff_time.strftime('%H:%M')
+  end
+
+  # etd = estimated time of departure
+  def etd
+    formatted_takeoff_time
+  end
+
   # ete = estimated time in route
   def ete
     hours = duration_in_minutes / 60
