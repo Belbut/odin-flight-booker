@@ -2,6 +2,7 @@
 <p>Find me in app/views/flights/index.html.erb</p>
 
 <%=link_to "home", flights_path %>
+<%= debug(params)%>
 
 
 <%=form_with model:@flight, method: :get do |form|%>
@@ -22,13 +23,17 @@
 
 
 <%if @queried_flights%>
-    <div>
-    <%@queried_flights.each do |flight|%>   
+<h2>Select your flight</h2>
+    <%=form_with url: new_booking_path, method: :get do |form| %>
         <div>
-            <%=render flight%>
+            <%@queried_flights.each do |flight|%>   
+                <div>
+                    <%=render flight%>
+                    <%=form.checkbox "flight#{[flight.id]}",  include_hidden:false%>
+                </div>
+            <%end%>
         </div>
-    <%end%>
-    </div>
+        <%= form.hidden_field :number_passengers %>
+        <%= form.submit "Buy Flights"%>
+    <%end %>
 <%end%>
-
-<%= debug(params)%>
