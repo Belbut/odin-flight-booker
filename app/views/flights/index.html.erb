@@ -2,8 +2,8 @@
 <p>Find me in app/views/flights/index.html.erb</p>
 
 <%=link_to "home", flights_path %>
-<%= debug(params)%>
 
+<div><%= debug(params) %></div>
 
 <%=form_with model:@flight, method: :get do |form|%>
     <%=form.label :departure_airport, "From:"%>
@@ -33,7 +33,7 @@
                 </div>
             <%end%>
         </div>
-        <%= form.hidden_field :number_passengers %>
+        <%= form.hidden_field :number_passengers, value: params[:flight][:number_passengers]%>
         <%= form.submit "Buy Flights"%>
     <%end %>
 <%end%>

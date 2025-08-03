@@ -1,4 +1,21 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
+<%= link_to "Home", root_path %>
 
-<%= debug params%>
+<div><%= debug params %></div>
+
+<h2>Flights Selected:</h2>
+    <div>
+        <% @flights.each do |flight| %>
+            <div>
+                    <div> Flight number: <%= flight.id.to_s.rjust(6,"0") %></div>
+                <div> Flight Date: <%= flight.formatted_takeoff_date %></div>
+                <%= render flight %>
+            </div>
+        <% end %>
+    </div>
+
+<h2>Passenger Information:</h2>
+<% @passengers.each do |passenger| %>
+
+<% end %>
