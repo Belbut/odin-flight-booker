@@ -8,7 +8,7 @@
     <div>
         <% @flights.each do |flight| %>
             <div>
-                    <div> Flight number: <%= flight.id.to_s.rjust(6,"0") %></div>
+                <div> Flight number: <%= flight.id.to_s.rjust(6,"0") %></div>
                 <div> Flight Date: <%= flight.formatted_takeoff_date %></div>
                 <%= render flight %>
             </div>
@@ -16,6 +16,23 @@
     </div>
 
 <h2>Passenger Information:</h2>
-<% @passengers.each do |passenger| %>
+<div>
+    <%= form_with model: @booking, method: :create do |booking_form| %>
+        <% @booking.passengers.each_with_index do |passenger, index| %>
+            <%= booking_form.fields_for :passengers, passenger do |passenger_form| %>
 
-<% end %>
+                <h3>- Passenger <%= index+1%> 
+                <div>
+                    <%= passenger_form.label :name, "Name: " %>
+                    <%= passenger_form.text_field :name %>
+                </div>
+
+                <div>
+                    <%= passenger_form.label :email, "Email: " %>
+                    <%= passenger_form.email_field :email %>
+                </div>
+            <% end %>
+        <% end %>
+        <%= booking_form.submit %>
+    <% end %>
+</div>
