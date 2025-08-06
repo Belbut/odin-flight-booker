@@ -4,32 +4,33 @@
 
 <div><%= debug params %></div>
 
-<h2>Flights Selected:</h2>
-    <div>
-        <% @flights.each do |flight| %>
-            <div>
-                <div> Flight number: <%= flight.id.to_s.rjust(6,"0") %></div>
-                <div> Flight Date: <%= flight.formatted_takeoff_date %></div>
-                <%= render flight %>
-            </div>
-        <% end %>
-    </div>
-
-<h2>Passenger Information:</h2>
 <div>
     <%= form_with model: @booking, method: :create do |booking_form| %>
+        <h2>Flights Selected:</h2>
+        <div>
+            <% @flights.each do |flight| %>
+                <%= hidden_field_tag 'flight_ids[]', flight.id%>
+                    <div>
+                        <div> Flight number: <%= flight.id.to_s.rjust(6,"0") %></div>
+                        <div> Flight Date: <%= flight.formatted_takeoff_date %></div>
+                        <%= render flight %>
+                    </div>
+            <% end %>
+        </div>
+
+        <h2>Passenger Information:</h2>
         <% @booking.passengers.each_with_index do |passenger, index| %>
             <%= booking_form.fields_for :passengers, passenger do |passenger_form| %>
 
-                <h3>- Passenger <%= index+1%> 
+                <h3>- Passenger <%= index+1 %>
                 <div>
                     <%= passenger_form.label :name, "Name: " %>
-                    <%= passenger_form.text_field :name %>
+                    <%= passenger_form.text_field :name , value: "name"%>
                 </div>
 
                 <div>
                     <%= passenger_form.label :email, "Email: " %>
-                    <%= passenger_form.email_field :email %>
+                    <%= passenger_form.email_field :email, value: "email@email" %>
                 </div>
             <% end %>
         <% end %>
