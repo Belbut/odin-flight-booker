@@ -1,0 +1,15 @@
+<h1>Bookings#show</h1>
+<p>Find me in app/views/bookings/show.html.erb</p>
+<%= link_to "Home", root_path %>
+
+<h2>Booking id:</h2><%= @booking.id %>
+
+<h2>For the Flights:</h2>
+<% @booking.flights.each do |flight| %>
+    <%= render flight %>
+<% end %>
+
+<h2>Passengers :</h2>
+<% @booking.passengers.each do |passenger| %>
+    <%= passenger.name %>
+<% end %>

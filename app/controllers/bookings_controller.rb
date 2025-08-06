@@ -14,10 +14,14 @@ class BookingsController < ApplicationController
     @booking.flights = Flight.find(params[:flight_ids])
 
     if @booking.save
-      redirect_to root_path, notice: 'Booking created!'
+      redirect_to @booking, notice: 'Booking created!'
     else
       render :new, notice: 'Failed to save the booking'
     end
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   private
