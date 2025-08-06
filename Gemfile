@@ -63,3 +63,5 @@ group :test do
 end
 
 gem 'erb_lint', '~> 0.9.0', require: false
+
+gem "awesome_print", "~> 1.9"
