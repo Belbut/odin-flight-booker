@@ -9,7 +9,7 @@
         <h2>Flights Selected:</h2>
         <div>
             <% @flights.each do |flight| %>
-                <%= hidden_field_tag 'flight_ids[]', flight.id%>
+                <%= hidden_field_tag 'flight_ids[]', flight.id, {id: nil, class:"flight_id"}%>
                     <div>
                         <div> Flight number: <%= flight.id.to_s.rjust(6,"0") %></div>
                         <div> Flight Date: <%= flight.formatted_takeoff_date %></div>
