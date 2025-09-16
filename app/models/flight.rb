@@ -24,4 +24,8 @@ class Flight < ApplicationRecord
     minutes = duration_in_minutes % 60
     "#{hours.to_s.rjust(2, '0')}H#{minutes.to_s.rjust(2, '0')}"
   end
+
+  def to_s
+    "#{departure_airport.code}->#{arrival_airport}.code"
+  end
 end

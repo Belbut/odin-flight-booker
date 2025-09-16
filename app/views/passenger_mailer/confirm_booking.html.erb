@@ -1,0 +1,23 @@
+    <p>Hi <%== passenger.name %>,</p>
+
+    <p>Thank you for your booking!<br/>
+    We are happy to confirm your reservation with the details below:</p>
+
+    <p><strong>Booking ID:</strong> <%= @passenger.booking %></p>
+
+    <% @flights.each_with_index do |flight, index| %>
+      <% if @flights.size > 1 %>
+        <p><strong>Flight Number <%= index %></strong></p>
+      <% end %>
+      <ul>
+        <li>Date: <%= flight.formatted_takeoff_date %></li>
+        <li>Time: <%= flight.formatted_takeoff_time %></li>
+        <li>From: <%= flight.departure_airport %></li>
+        <li>To: <%= flight.arrival_airport %></li>
+      </ul>
+    <% end %>
+
+    <p>We look forward to seeing you!</p>
+
+    <p>Best regards,<br/>
+    BelbutAirWays</p>
