@@ -6,4 +6,8 @@ class Airport < ApplicationRecord
   has_many :arriving_flights, class_name: 'Flight', foreign_key: 'arrival_airport_id'
 
   alias_attribute :icao_code, :code
+
+  def to_s
+    "#{name} (#{code})"
+  end
 end

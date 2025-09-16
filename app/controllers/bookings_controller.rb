@@ -11,12 +11,7 @@ class BookingsController < ApplicationController
     @booking.flights = Flight.find(params[:flight_ids])
 
     if @booking.save
-      puts '********************************************************************'
-      puts '->>>>>>>' + @booking.passengers.inspect
-      @booking.passengers.each do |passenger|
-        puts '-<<<<<<' + passenger.name
-        PassengerMailer.with(passenger: passenger).confirm_booking.deliver_later
-      end
+      send_confirmation_email
       redirect_to @booking, notice: 'Booking created!'
     else
       render :new, notice: 'Failed to save the booking'
@@ -28,6 +23,12 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def send_confirmation_email
+    @booking.passengers.each do |passenger|
+      PassengerMailer.with(passenger: passenger).confirm_booking.deliver_later
+    end
+  end
 
   def booking_params
     params.require(:booking).permit(

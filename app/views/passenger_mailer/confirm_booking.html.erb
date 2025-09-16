@@ -9,6 +9,7 @@
       <% if @flights.size > 1 %>
         <p><strong>Flight Number <%= index %></strong></p>
       <% end %>
+      <strong><%=flight%></strong>
       <ul>
         <li>Date: <%= flight.formatted_takeoff_date %></li>
         <li>Time: <%= flight.formatted_takeoff_time %></li>

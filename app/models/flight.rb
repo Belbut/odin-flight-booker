@@ -26,6 +26,6 @@ class Flight < ApplicationRecord
   end
 
   def to_s
-    "#{departure_airport.code}->#{arrival_airport}.code"
+    "#{departure_airport.code}->#{arrival_airport.code}"
   end
 end
